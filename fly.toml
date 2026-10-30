@@ -1,7 +1,7 @@
 # fly.toml configuration for VPCCECM ERP
 
 app = 'vpcecm-erp'
-primary_region = 'bom'
+primary_region = 'sin'
 
 [build]
   dockerfile = 'Dockerfile'

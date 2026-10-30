@@ -1,4 +1,4 @@
-﻿#!/bin/bash
+#!/bin/bash
 set -e
 
 export PORT="${PORT:-80}"
@@ -36,7 +36,7 @@ chmod -R 777 /var/www/html/storage /var/www/html/bootstrap/cache /var/www/html/d
 # Check and generate APP_KEY
 php artisan key:generate --force || true
 
-# Run package discovery now that environment is established
+# Run package discovery
 echo "Discovering packages..."
 php artisan package:discover --ansi || true
 
