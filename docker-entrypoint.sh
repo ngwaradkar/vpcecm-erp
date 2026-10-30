@@ -33,6 +33,9 @@ fi
 
 chmod -R 777 /var/www/html/storage /var/www/html/bootstrap/cache /var/www/html/database
 
+# Ensure PHP 8.1 compatibility patches are applied
+php /var/www/html/docker/patch-php81.php || true
+
 # Check and generate APP_KEY
 php artisan key:generate --force || true
 

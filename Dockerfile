@@ -1,6 +1,6 @@
-FROM php:8.0-apache-bullseye
+FROM php:8.1-apache
 
-# Install system dependencies & libraries on Debian Bullseye
+# Install system dependencies & libraries on Debian Bookworm
 RUN apt-get update && apt-get install -y --no-install-recommends \
     git \
     curl \
@@ -36,6 +36,9 @@ COPY docker/apache.conf /etc/apache2/sites-available/000-default.conf
 
 # Install dependencies via composer without running build-time scripts
 RUN composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist --no-scripts --ignore-platform-reqs
+
+# Apply PHP 8.1 compatibility patches to Laravel vendor framework
+RUN php docker/patch-php81.php
 
 # Set permissions for entrypoint
 RUN chmod +x /var/www/html/docker-entrypoint.sh
