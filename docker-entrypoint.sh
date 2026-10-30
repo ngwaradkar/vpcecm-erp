@@ -7,6 +7,15 @@ echo "Configuring Apache to listen on port ${PORT}..."
 sed -i "s/Listen [0-9]*/Listen ${PORT}/" /etc/apache2/ports.conf
 sed -i "s/<VirtualHost \*:[0-9]*>/<VirtualHost \*:${PORT}>/" /etc/apache2/sites-available/000-default.conf
 
+# Ensure .env exists
+if [ ! -f /var/www/html/.env ]; then
+    echo "Creating .env from .env.example..."
+    cp /var/www/html/.env.example /var/www/html/.env
+fi
+
+# Clean any stale bootstrap caches
+rm -f /var/www/html/bootstrap/cache/*.php
+
 # Create necessary directories
 mkdir -p /var/www/html/storage/framework/sessions
 mkdir -p /var/www/html/storage/framework/views
@@ -24,11 +33,12 @@ fi
 
 chmod -R 777 /var/www/html/storage /var/www/html/bootstrap/cache /var/www/html/database
 
-# Check APP_KEY
-if [ -z "$APP_KEY" ]; then
-    echo "Generating Application Key..."
-    php artisan key:generate --force
-fi
+# Check and generate APP_KEY
+php artisan key:generate --force || true
+
+# Run package discovery now that environment is established
+echo "Discovering packages..."
+php artisan package:discover --ansi || true
 
 # Link public storage
 php artisan storage:link || true

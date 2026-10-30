@@ -34,8 +34,8 @@ COPY . /var/www/html
 # Copy Apache virtualhost config
 COPY docker/apache.conf /etc/apache2/sites-available/000-default.conf
 
-# Install dependencies via composer
-RUN composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist --ignore-platform-reqs
+# Install dependencies via composer without running build-time scripts
+RUN composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist --no-scripts --ignore-platform-reqs
 
 # Set permissions for entrypoint
 RUN chmod +x /var/www/html/docker-entrypoint.sh

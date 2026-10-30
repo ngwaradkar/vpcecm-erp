@@ -7,4 +7,10 @@ yarn-error.log
 temp_edge_profile
 manual_temp.html
 build_manual.py
+bootstrap/cache/*.php
+storage/framework/cache/*
+storage/framework/sessions/*
+storage/framework/views/*
+storage/logs/*
+.env
 *.tmp
