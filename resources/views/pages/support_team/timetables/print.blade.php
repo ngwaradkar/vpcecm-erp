@@ -37,12 +37,12 @@
         {{--    Logo N School Details--}}
         <table width="100%">
             <tr>
-                <td >
-                    <strong><span style="color: #1b0c80; font-size: 25px;">{{ strtoupper(config('app.name')) }}</span></strong><br/>
-                    {{-- <strong><span style="color: #1b0c80; font-size: 20px;">MINNA, NIGER STATE</span></strong><br/>--}}
-                    <strong><span style="color: #000; font-size: 15px;"><i>{{ ucwords($s['address']) }}</i></span></strong><br/>
-                    <strong><span style="color: #000; text-decoration: underline; font-size: 15px;"><i>{{ config('app.url') }}/i></span></strong>
-                    <br /> <br />
+                <td style="width: 110px; vertical-align: middle;">
+                    <img src="{{ $s['logo'] ? asset($s['logo']) : asset('assets/images/college_emblem.png') }}" style="max-height: 85px;">
+                </td>
+                <td style="vertical-align: middle;">
+                    <strong><span style="color: #1b0c80; font-size: 22px;">{{ strtoupper(Qs::getSetting('system_name')) }}</span></strong><br/>
+                    <strong><span style="color: #000; font-size: 14px;"><i>{{ ucwords($s['address']) }}</i></span></strong><br/>
                     <strong><span style="color: #000; font-size: 15px;"> TIMETABLE FOR {{ strtoupper($my_class->name. ' ('.$ttr->year.')' ) }}
                     </span></strong>
                 </td>
@@ -51,8 +51,8 @@
 
         {{--Background Logo--}}
         <div style="position: relative;  text-align: center; ">
-            <img src="{{ $s['logo'] }}"
-                 style="max-width: 500px; max-height:600px; margin-top: 60px; position:absolute ; opacity: 0.2; margin-left: auto;margin-right: auto; left: 0; right: 0;" />
+            <img src="{{ $s['logo'] ? asset($s['logo']) : asset('assets/images/college_emblem.png') }}"
+                 style="max-width: 500px; max-height:600px; margin-top: 60px; position:absolute ; opacity: 0.15; margin-left: auto;margin-right: auto; left: 0; right: 0;" />
         </div>
 
         {{-- Tabulation Begins --}}

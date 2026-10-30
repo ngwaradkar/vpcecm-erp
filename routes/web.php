@@ -19,6 +19,15 @@ Route::group(['middleware' => 'auth'], function () {
         Route::put('/change_password', 'MyAccountController@change_pass')->name('my_account.change_pass');
     });
 
+    /*************** VPCCECM Institutional & Compliance *****************/
+    Route::group(['prefix' => 'institutional'], function() {
+        Route::get('/governance', 'HomeController@governance')->name('institutional.governance');
+        Route::get('/mous', 'HomeController@mous')->name('institutional.mous');
+        Route::get('/extension', 'HomeController@extension')->name('institutional.extension');
+        Route::get('/achievements', 'HomeController@achievements')->name('institutional.achievements');
+        Route::get('/library', 'HomeController@library')->name('institutional.library');
+    });
+
     /*************** Support Team *****************/
     Route::group(['namespace' => 'SupportTeam',], function(){
 

@@ -1,0 +1,10 @@
+.git
+.github
+vendor
+node_modules
+npm-debug.log
+yarn-error.log
+temp_edge_profile
+manual_temp.html
+build_manual.py
+*.tmp

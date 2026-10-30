@@ -7,19 +7,16 @@ use Illuminate\Support\Facades\DB;
 class DormsTableSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
-     *
-     * @return void
+     * VPCCECM Student Accommodation / Hostels
+     * Linkage with Akhiviraj Guest House, Porvorim for outstation students
      */
     public function run()
     {
         DB::table('dorms')->delete();
         $data = [
-            ['name' => 'Faith Hostel'],
-            ['name' => 'Peace Hostel'],
-            ['name' => 'Grace Hostel'],
-            ['name' => 'Success Hostel'],
-            ['name' => 'Trust Hostel'],
+            ['name' => 'Akhiviraj Student Residency (Boys Wing)'],
+            ['name' => 'Akhiviraj Student Residency (Girls Wing)'],
+            ['name' => 'Porvorim Campus Scholars Home'],
         ];
         DB::table('dorms')->insert($data);
     }

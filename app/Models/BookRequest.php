@@ -1,10 +1,17 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
 class BookRequest extends Model
 {
-    //
+    protected $fillable = [
+        'book_id', 'user_id', 'start_date', 'end_date', 'returned', 'status'
+    ];
+
+    public function book()
+    {
+        return $this->belongsTo(Book::class);
+    }
 }

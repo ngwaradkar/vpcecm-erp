@@ -9,13 +9,13 @@
         {{--    Logo N School Details--}}
         <table width="100%">
             <tr>
-                {{--<td><img src="{{ $s['logo'] }}" style="max-height : 100px;"></td>--}}
+                <td style="width: 110px; vertical-align: middle;">
+                    <img src="{{ $s['logo'] ? asset($s['logo']) : asset('assets/images/college_emblem.png') }}" style="max-height: 90px;">
+                </td>
 
-                <td >
-                    <strong><span style="color: #1b0c80; font-size: 25px;">{{ strtoupper(Qs::getSetting('system_name')) }}</span></strong><br/>
-                    {{-- <strong><span style="color: #1b0c80; font-size: 20px;">MINNA, NIGER STATE</span></strong><br/>--}}
-                    <strong><span
-                                style="color: #000; font-size: 15px;"><i>{{ ucwords($s['address']) }}</i></span></strong><br/>
+                <td style="vertical-align: middle;">
+                    <strong><span style="color: #1b0c80; font-size: 22px;">{{ strtoupper(Qs::getSetting('system_name')) }}</span></strong><br/>
+                    <strong><span style="color: #000; font-size: 14px;"><i>{{ ucwords($s['address']) }}</i></span></strong><br/>
                     <strong><span style="color: #000; font-size: 15px;"> TABULATION SHEET FOR {{ strtoupper($my_class->name.' '.$section->name.' - '.$ex->name.' ('.$year.')' ) }}
                     </span></strong>
                 </td>
@@ -25,7 +25,7 @@
 
         {{--Background Logo--}}
         <div style="position: relative;  text-align: center; ">
-            <img src="{{ $s['logo'] }}"
+            <img src="{{ $s['logo'] ? asset($s['logo']) : asset('assets/images/college_emblem.png') }}"
                  style="max-width: 500px; max-height:600px; margin-top: 60px; position:absolute ; opacity: 0.2; margin-left: auto;margin-right: auto; left: 0; right: 0;" />
         </div>
 
@@ -38,13 +38,6 @@
                 @foreach($subjects as $sub)
                     <th rowspan="2">{{ strtoupper($sub->slug ?: $sub->name) }}</th>
                 @endforeach
-             {{--   @if($ex->term == 3)
-                    <th>1ST TERM TOTAL</th>
-                    <th>2ND TERM TOTAL</th>
-                    <th>3RD TERM TOTAL</th>
-                    <th style="color: darkred">CUM Total</th>
-                    <th style="color: darkblue">CUM Average</th>
-                @endif--}}
                 <th style="color: darkred">Total</th>
                 <th style="color: darkblue">Average</th>
                 <th style="color: darkgreen">Position</th>
@@ -58,15 +51,6 @@
                     @foreach($subjects as $sub)
                         <td>{{ $marks->where('student_id', $s->user_id)->where('subject_id', $sub->id)->first()->$tex ?? '-' ?: '-' }}</td>
                     @endforeach
-
-                    {{--@if($ex->term == 3)
-                        --}}{{--1st term Total--}}{{--
-                        <td>{{ Mk::getTermTotal($s->user_id, 1, $year) ?: '-' }}</td>
-                        --}}{{--2nd Term Total--}}{{--
-                        <td>{{ Mk::getTermTotal($s->user_id, 2, $year) ?: '-' }}</td>
-                        --}}{{--3rd Term total--}}{{--
-                        <td>{{ Mk::getTermTotal($s->user_id, 3, $year) ?: '-' }}</td>
-                    @endif--}}
 
                     <td style="color: darkred">{{ $exr->where('student_id', $s->user_id)->first()->total ?: '-' }}</td>
                     <td style="color: darkblue">{{ $exr->where('student_id', $s->user_id)->first()->ave ?: '-' }}</td>

@@ -8,24 +8,23 @@ use Illuminate\Support\Facades\DB;
 class ClassTypesTableSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
-     *
-     * @return void
+     * VPCCECM Programme Streams
+     * BC = B.Com. (Goa University, NEP 2020 / CBCS OC-66)
+     * BE = B.A.B.Ed. (4-Year Integrated, NCTE / OC-54)
+     * PG = Postgraduate Centre (IGNOU Study Centre)
+     * VC = Vocational & Certificate Programmes
      */
     public function run()
     {
         DB::table('class_types')->delete();
 
         $data = [
-            ['name' => 'Creche', 'code' => 'C'],
-            ['name' => 'Pre Nursery', 'code' => 'PN'],
-            ['name' => 'Nursery', 'code' => 'N'],
-            ['name' => 'Primary', 'code' => 'P'],
-            ['name' => 'Junior Secondary', 'code' => 'J'],
-            ['name' => 'Senior Secondary', 'code' => 'S'],
+            ['name' => 'Undergraduate Commerce (B.Com.)', 'code' => 'BC'],
+            ['name' => 'Teacher Education (B.A.B.Ed.)', 'code' => 'BE'],
+            ['name' => 'Postgraduate (IGNOU)', 'code' => 'PG'],
+            ['name' => 'Vocational & Certificate', 'code' => 'VC'],
         ];
 
         DB::table('class_types')->insert($data);
-
     }
 }

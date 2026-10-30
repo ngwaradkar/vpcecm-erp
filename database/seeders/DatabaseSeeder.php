@@ -7,7 +7,7 @@ use Illuminate\Database\Seeder;
 class DatabaseSeeder extends Seeder
 {
     /**
-     * Seed the application's database.
+     * Seed the application's database for VPCCECM.
      *
      * @return void
      */
@@ -24,9 +24,13 @@ class DatabaseSeeder extends Seeder
         $this->call(LgasTableSeeder::class);
         $this->call(SettingsTableSeeder::class);
         $this->call(UsersTableSeeder::class);
+        $this->call(StaffRecordsTableSeeder::class);
         $this->call(SubjectsTableSeeder::class);
         $this->call(SectionsTableSeeder::class);
         $this->call(StudentRecordsTableSeeder::class);
         $this->call(SkillsTableSeeder::class);
+        $this->call(PaymentsTableSeeder::class);
+        $this->call(BooksTableSeeder::class);
+        $this->call(VpcecmComplianceTableSeeder::class);
     }
 }

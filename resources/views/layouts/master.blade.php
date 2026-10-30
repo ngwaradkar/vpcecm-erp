@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta id="csrf-token" name="csrf-token" content="{{ csrf_token() }}">
-    <meta name="author" content="CJ Inspired">
+    <meta name="author" content="Nilesh Waradkar">
 
     <title> @yield('page_title') | {{ config('app.name') }} </title>
 
@@ -38,6 +38,16 @@
             @yield('content')
         </div>
 
+        <div class="navbar navbar-expand-lg navbar-light border-top mt-auto">
+            <span class="navbar-text">
+                &copy; {{ date('Y') }}. <a href="#">Vidya Prabodhini College of Commerce, Education, Computer and Management</a> by <a href="#" class="font-weight-semibold text-primary">Nilesh Waradkar</a>
+            </span>
+
+            <ul class="navbar-nav ml-lg-auto">
+                <li class="nav-item"><a href="{{ route('privacy_policy') }}" class="navbar-nav-link" target="_blank"><i class="icon-lifebuoy mr-2"></i> Privacy Policy</a></li>
+                <li class="nav-item"><a href="{{ route('terms_of_use') }}" class="navbar-nav-link" target="_blank"><i class="icon-file-text2 mr-2"></i> Terms of Use </a></li>
+            </ul>
+        </div>
 
     </div>
 </div>

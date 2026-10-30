@@ -9,33 +9,31 @@
         {{--  School Details--}}
         <table width="100%">
             <tr>
-
-                <td>
-                    <strong><span
-                                style="color: #1b0c80; font-size: 25px;">{{ strtoupper(Qs::getSetting('system_name')) }}</span></strong><br/>
-                    {{-- <strong><span style="color: #1b0c80; font-size: 20px;">MINNA, NIGER STATE</span></strong><br/>--}}
-                    <strong><span
-                                style="color: #000; font-size: 15px;"><i>{{ ucwords($s['address']) }}</i></span></strong>
+                <td style="width: 110px; vertical-align: middle;">
+                    <img src="{{ $s['logo'] ? asset($s['logo']) : asset('assets/images/college_emblem.png') }}" style="max-height: 85px;">
+                </td>
+                <td style="vertical-align: middle;">
+                    <strong><span style="color: #1b0c80; font-size: 22px;">{{ strtoupper(Qs::getSetting('system_name')) }}</span></strong><br/>
+                    <strong><span style="color: #000; font-size: 14px;"><i>{{ ucwords($s['address']) }}</i></span></strong>
                     <br/> <br/>
-
-                     <span style="color: #000; font-weight: bold; font-size: 25px;"> PAYMENT RECEIPT</span>
+                    <span style="color: #000; font-weight: bold; font-size: 22px;"> PAYMENT RECEIPT</span>
                 </td>
             </tr>
         </table>
 
         {{--Background Logo--}}
-        <div style="position: relative;  text-align: center; ">
-            <img src="{{ $s['logo'] }}"
+        <div style="position: relative; text-align: center;">
+            <img src="{{ $s['logo'] ? asset($s['logo']) : asset('assets/images/college_emblem.png') }}"
                  style="max-width: 500px; max-height:600px; margin-top: 60px; position:absolute ; opacity: 0.1; margin-left: auto;margin-right: auto; left: 0; right: 0;"/>
         </div>
 
         {{--Receipt No --}}
     <div class="bold arial" style="text-align: center; float:right; width: 200px; padding: 5px; margin-right:30px">
         <div style="padding: 10px 20px; width: 200px; background-color: lightcyan;">
-            <span  style="font-size: 16px;">Receipt Reference No.</span>
+            <span style="font-size: 16px;">Receipt Reference No.</span>
         </div>
-        <div  style="padding: 10px 20px; width: 200px; background-color: lightyellow;">
-            <span  style="font-size: 25px;">{{ $pr->ref_no }}</span>
+        <div style="padding: 10px 20px; width: 200px; background-color: lightyellow;">
+            <span style="font-size: 25px;">{{ $pr->ref_no }}</span>
         </div>
     </div>
 
@@ -83,7 +81,7 @@
                 </tr>
                 <tr>
                     <td class="bold">AMOUNT:</td>
-                    <td>{{ $payment->amount }}</td>
+                    <td>₹ {{ number_format($payment->amount) }}</td>
                     <td class="bold">DESCRIPTION:</td>
                     <td>{{ $payment->description }}</td>
                 </tr>
@@ -98,16 +96,16 @@
            <thead>
            <tr>
                <td class="bold">Date</td>
-               <td class="bold">Amount Paid <del style="text-decoration-style: double">N</del></td>
-               <td class="bold">Balance <del style="text-decoration-style: double">N</del></td>
+               <td class="bold">Amount Paid (₹)</td>
+               <td class="bold">Balance (₹)</td>
            </tr>
            </thead>
             <tbody>
             @foreach($receipts as $r)
                 <tr>
                     <td>{{ date('D\, j F\, Y', strtotime($r->created_at)) }}</td>
-                    <td>{{ $r->amt_paid }}</td>
-                    <td>{{ $r->balance }}</td>
+                    <td>₹ {{ number_format($r->amt_paid) }}</td>
+                    <td>₹ {{ number_format($r->balance) }}</td>
                 </tr>
                 @endforeach
             </tbody>
@@ -116,10 +114,10 @@
         <hr>
         <div class="bold arial" style="text-align: center; float:right; width: 200px; padding: 5px; margin-right:30px">
             <div style="padding: 10px 20px; width: 200px; background-color: lightcyan;">
-                <span  style="font-size: 16px;">{{ $pr->paid ? 'PAYMENT STATUS' : 'TOTAL DUE' }}</span>
+                <span style="font-size: 16px;">{{ $pr->paid ? 'PAYMENT STATUS' : 'TOTAL DUE' }}</span>
             </div>
-            <div  style="padding: 10px 20px; width: 200px; background-color: lightyellow;">
-                <span  style="font-size: 25px;">{{ $pr->paid ? 'CLEARED' : $pr->balance }}</span>
+            <div style="padding: 10px 20px; width: 200px; background-color: lightyellow;">
+                <span style="font-size: 25px;">{{ $pr->paid ? 'CLEARED' : '₹ '.number_format($pr->balance) }}</span>
             </div>
         </div>
         <div class="clear"></div>
