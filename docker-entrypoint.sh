@@ -36,8 +36,10 @@ chmod -R 777 /var/www/html/storage /var/www/html/bootstrap/cache /var/www/html/d
 # Ensure PHP 8.1 compatibility patches are applied
 php /var/www/html/docker/patch-php81.php || true
 
-# Check and generate APP_KEY
-php artisan key:generate --force || true
+# Check and generate APP_KEY if not already set
+if [ -z "$APP_KEY" ]; then
+    php artisan key:generate --force || true
+fi
 
 # Run package discovery
 echo "Discovering packages..."
