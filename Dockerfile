@@ -22,6 +22,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Enable Apache mod_rewrite
 RUN a2enmod rewrite
 
+# Suppress PHP 8.1 deprecation notices
+RUN echo "error_reporting = E_ALL & ~E_DEPRECATED & ~E_USER_DEPRECATED" > /usr/local/etc/php/conf.d/error-reporting.ini
+
 # Copy composer from official image
 COPY --from=composer:2.6 /usr/bin/composer /usr/bin/composer
 
